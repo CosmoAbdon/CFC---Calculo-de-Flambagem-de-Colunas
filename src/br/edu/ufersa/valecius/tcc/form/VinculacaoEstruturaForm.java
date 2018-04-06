@@ -54,6 +54,7 @@ public class VinculacaoEstruturaForm extends javax.swing.JFrame {
         jb_prox = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("VINCULAÇÃO DA ESTRUTURA EM ANÁLISE");

@@ -13,44 +13,41 @@ import java.util.OptionalDouble;
  * @author cosmo
  */
 public class VariavelCl {
-    
 
-    public static void main(String [] args){
+    public static void main(String[] args) {
         VariavelCl variavelCl = new VariavelCl(4.0, 8.0, 2.0, 1.0);
-        
-        
-        System.out.println("Valor lx : "+ variavelCl.getIx());
-        System.out.println("Valor ly : "+ variavelCl.getIy());
-        System.out.println("Valor A : "+ variavelCl.getA());
-        System.out.println("Valor RX : "+ variavelCl.getRx());
+
+        System.out.println("Valor lx : " + variavelCl.getIx());
+        System.out.println("Valor ly : " + variavelCl.getIy());
+        System.out.println("Valor A : " + variavelCl.getA());
+        System.out.println("Valor RX : " + variavelCl.getRx());
     }
-    
-    
-    private int tipo; 
+
+    private int tipo;
     /*
         0 = Abas Largas
         1 = Retangular Cheio
         2 = Retangular Vazio
         3 = Circular Cheio
         4 = Circular Vazio
-    */
-    
+     */
+
     // Abas Largas
     private Double tw;
     private Double bf;
     private Double tf;
     private Double d;
-    
+
     //Circular 
     private Double r1;
     private Double r2;
-    
+
     //Retangular
     private Double b;
     private Double h;
     private Double e1;
     private Double e2;
-    
+
     // Variaveis Fixas
     private Double Ix;
     private Double iy;
@@ -61,71 +58,95 @@ public class VariavelCl {
     private Double l;
     private Double lef;
 
+    private Double Cy;
+    private Double Cx;
+    private Double Ex;
+    private Double Ey;
+    private Double resObj; // SIGMA C
+    private Double sigmaF;
+
     public VariavelCl() {
     }
 
-    public VariavelCl(int tipo, Double tw, Double bf, Double tf, Double d) {
+    // ABAS LARGAS
+    public VariavelCl(int tipo, Double tw, Double bf, Double tf, Double d) { 
         this.tipo = tipo;
         this.tw = tw;
         this.bf = bf;
         this.tf = tf;
         this.d = d;
-        
-        Ix = (tw*(d-2*tf)*(d-2*tf)*(d-2*tf))/12 + 2*((bf*tf*tf*tf)/12+(bf*tf)*((d-tf)/2)*((d-tf)/2));
-        iy = (((d - (2 * tf)) * Math.pow(tw, 3)) / 12 + (2 * tf * Math.pow(bf, 3) )/12);
-        A = (d*bf) - (bf - tw) * (d- 2*tf);
-        rx = sqrt(Ix/A);
-        ry = sqrt(iy/A);
-        
-    }
 
+        Ix = (tw * (d - 2 * tf) * (d - 2 * tf) * (d - 2 * tf)) / 12 + 2 * ((bf * tf * tf * tf) / 12 + (bf * tf) * ((d - tf) / 2) * ((d - tf) / 2));
+        iy = (((d - (2 * tf)) * Math.pow(tw, 3)) / 12 + (2 * tf * Math.pow(bf, 3)) / 12);
+        A = (d * bf) - (bf - tw) * (d - 2 * tf);
+        rx = sqrt(Ix / A);
+        ry = sqrt(iy / A);
+        Cx = bf/2;
+        Cy = d/2;
+
+    }
+    // CIRCULAR VAZADO
     public VariavelCl(int tipo, Double r1, Double r2) {
         this.tipo = tipo;
         this.r1 = r1;
         this.r2 = r2;
-        
+
         Ix = (Math.PI * (Math.pow(r1, 4) - Math.pow(r2, 4)) / 4);
         iy = (Math.PI * (Math.pow(r1, 4) - Math.pow(r2, 4)) / 4);
-        A = Math.PI * (r1*r1 - r2*r2) ;
-        rx = sqrt(Ix/A);
-        ry = sqrt(iy/A);
+        A = Math.PI * (r1 * r1 - r2 * r2);
+        rx = sqrt(Ix / A);
+        ry = sqrt(iy / A);
+        Cx = Cy = r1;
+        
     }
 
+    // CIRCULAR CHEIO  
     public VariavelCl(int tipo, Double r1) {
         this.tipo = tipo;
         this.r1 = r1;
-        
-        Ix = (Math.PI * Math.pow(r1, 4)) / 4 ; 
-        iy = (Math.PI * Math.pow(r1, 4)) / 4 ; 
-        A = Math.PI * (r1*r1) ;
-        rx = sqrt(Ix/A);
-        ry = sqrt(iy/A);
+
+        Ix = (Math.PI * Math.pow(r1, 4)) / 4;
+        iy = (Math.PI * Math.pow(r1, 4)) / 4;
+        A = Math.PI * (r1 * r1);
+        rx = sqrt(Ix / A);
+        ry = sqrt(iy / A);
+        Cx = Cy = r1;
     }
 
-    
-    public VariavelCl (Double b, Double h){
+    // RETANGULR CHEIO
+    public VariavelCl(Double b, Double h) {
         tipo = 1;
-        
-        Ix = (b*Math.pow(h,3))/12;
-        iy = (h*Math.pow(b,3))/12;
-        A = b*h;
-        rx = sqrt(Ix/A);
-        ry = sqrt(iy/A);
+
+        this.b = b;
+        this.h = h;
+
+        Ix = (b * Math.pow(h, 3)) / 12;
+        iy = (h * Math.pow(b, 3)) / 12;
+        A = b * h;
+        rx = sqrt(Ix / A);
+        ry = sqrt(iy / A);
+        Cx = b/2;
+        Cy = h/2;
     }
-    
-    
-    public VariavelCl(Double b, Double h, Double e1, Double e2){
+
+    // RETANGULAR VAZADO
+    public VariavelCl(Double b, Double h, Double e1, Double e2) {
         tipo = 2;
-        
-        Ix = b*Math.pow(h, 3)/12 - (b-2*e2) * Math.pow((h-2*e1), 3)/12;
-        iy = h*Math.pow(b, 3)/12 - (h-2*e1) * Math.pow((b-2*e2), 3)/12;
-        A = b*h - (b-2*e2) * (h-2*e1);
-        rx = sqrt(Ix/A);
-        ry = sqrt(iy/A);
-        
+
+        this.b = b;
+        this.h = h;
+        this.e1 = e1;
+        this.e2 = e2;
+
+        Ix = b * Math.pow(h, 3) / 12 - (b - 2 * e2) * Math.pow((h - 2 * e1), 3) / 12;
+        iy = h * Math.pow(b, 3) / 12 - (h - 2 * e1) * Math.pow((b - 2 * e2), 3) / 12;
+        A = b * h - (b - 2 * e2) * (h - 2 * e1);
+        rx = sqrt(Ix / A);
+        ry = sqrt(iy / A);
+        Cx = b/2;
+        Cy = h/2;
     }
-    
-    
+
     public int getTipo() {
         return tipo;
     }
@@ -278,10 +299,52 @@ public class VariavelCl {
         this.lef = lef;
     }
 
-    
-    
-   
-    
-    
-    
+    public Double getCy() {
+        return Cy;
+    }
+
+    public void setCy(Double Cy) {
+        this.Cy = Cy;
+    }
+
+    public Double getCx() {
+        return Cx;
+    }
+
+    public void setCx(Double Cx) {
+        this.Cx = Cx;
+    }
+
+    public Double getEx() {
+        return Ex;
+    }
+
+    public void setEx(Double Ex) {
+        this.Ex = Ex;
+    }
+
+    public Double getEy() {
+        return Ey;
+    }
+
+    public void setEy(Double Ey) {
+        this.Ey = Ey;
+    }
+
+    public Double getResObj() {
+        return resObj;
+    }
+
+    public void setResObj(Double resObj) {
+        this.resObj = resObj;
+    }
+
+    public Double getSigmaF() {
+        return sigmaF;
+    }
+
+    public void setSigmaF(Double sigmaF) {
+        this.sigmaF = sigmaF;
+    }
+
 }

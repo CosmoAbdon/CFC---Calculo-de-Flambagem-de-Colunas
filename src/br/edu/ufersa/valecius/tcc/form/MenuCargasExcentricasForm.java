@@ -5,19 +5,21 @@
  */
 package br.edu.ufersa.valecius.tcc.form;
 
+import br.edu.ufersa.valecius.tcc.form.admissivel.EquacoesProjetoAdmForm;
+import br.edu.ufersa.valecius.tcc.form.interacao.EquacoesProjetoInteForm;
 import br.edu.ufersa.valecius.tcc.utils.VariavelCl;
 
 /**
  *
  * @author cosmo
  */
-public class MenuMetodoResolucaoForm extends javax.swing.JFrame {
+public class MenuCargasExcentricasForm extends javax.swing.JFrame {
 
     /**
      * Creates new form MenuMetodoResolucaoForm
      */
     VariavelCl vci;
-    public MenuMetodoResolucaoForm(VariavelCl vc) {
+    public MenuCargasExcentricasForm(VariavelCl vc) {
         initComponents();
         vci = vc;
     }
@@ -33,67 +35,82 @@ public class MenuMetodoResolucaoForm extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jb_tensao = new javax.swing.JButton();
+        jb_tensao1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/ufersa/valecius/tcc/res/ufersa-icon2.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel1.setText("SELECIONE O MÉTODO DE RESOLUÇÃO");
+        jLabel1.setText("CARGAS EXCÊNTRICAS");
 
-        jButton1.setText("MÉTODO DE EULER");
+        jb_tensao.setText("Método das tensões admissíveis");
+        jb_tensao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_tensaoActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("EQUAÇÕES DE PROJETO");
-
-        jButton3.setText("MÉTODO DAS TENSÕES ADMISSÍVEIS");
+        jb_tensao1.setText("Método da interação");
+        jb_tensao1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_tensao1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(119, 119, 119)
-                                .addComponent(jButton1)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(jButton3)))
+                    .addComponent(jb_tensao)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(12, 12, 12)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(115, 115, 115)
+                .addComponent(jb_tensao1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(28, 28, 28)
-                        .addComponent(jButton1)))
-                .addGap(5, 5, 5)
-                .addComponent(jButton2)
-                .addGap(26, 26, 26)
-                .addComponent(jButton3)
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jb_tensao)
+                        .addGap(12, 12, 12)))
+                .addGap(16, 16, 16)
+                .addComponent(jb_tensao1)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jb_tensaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_tensaoActionPerformed
+        // TODO add your handling code here:
+        EquacoesProjetoAdmForm equacoesProjetoAdmForm = new EquacoesProjetoAdmForm(vci);
+        equacoesProjetoAdmForm.setVisible(true);
+    }//GEN-LAST:event_jb_tensaoActionPerformed
+
+    private void jb_tensao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_tensao1ActionPerformed
+        // TODO add your handling code here:
+        EquacoesProjetoInteForm equacoesProjetoInteForm = new EquacoesProjetoInteForm(vci);
+        equacoesProjetoInteForm.setVisible(true);
+        
+    }//GEN-LAST:event_jb_tensao1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -112,30 +129,30 @@ public class MenuMetodoResolucaoForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuMetodoResolucaoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuCargasExcentricasForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuMetodoResolucaoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuCargasExcentricasForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuMetodoResolucaoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuCargasExcentricasForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuMetodoResolucaoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuCargasExcentricasForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 VariavelCl vcc = null;
-                new MenuMetodoResolucaoForm(vcc).setVisible(true);
+                new MenuCargasExcentricasForm(vcc).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jb_tensao;
+    private javax.swing.JButton jb_tensao1;
     // End of variables declaration//GEN-END:variables
 }

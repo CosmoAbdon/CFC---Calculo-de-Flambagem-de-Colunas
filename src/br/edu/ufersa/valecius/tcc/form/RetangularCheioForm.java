@@ -46,6 +46,7 @@ public class RetangularCheioForm extends javax.swing.JFrame {
         jb_proximo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/ufersa/valecius/tcc/res/ufersa-icon2.png"))); // NOI18N
 
@@ -275,9 +276,9 @@ public class RetangularCheioForm extends javax.swing.JFrame {
     
       private Double defineValor(Double x) {
         if (setOptOld == 1) {
-            x /= 100;
+            x /= 100.0;
         } else if (setOptOld == 2) {
-            x /= 1000;
+            x /= 1000.0;
         }
         return x;
     }

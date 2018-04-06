@@ -5,6 +5,7 @@
  */
 package br.edu.ufersa.valecius.tcc.form;
 
+import br.edu.ufersa.valecius.tcc.form.admissivel.EquacoesProjetoAdmForm;
 import br.edu.ufersa.valecius.tcc.utils.VariavelCl;
 
 /**
@@ -33,22 +34,38 @@ public class MenuMetodoResolucaoForm extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jb_euler = new javax.swing.JButton();
+        jb_projeto = new javax.swing.JButton();
+        jb_tensao = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/ufersa/valecius/tcc/res/ufersa-icon2.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("SELECIONE O MÉTODO DE RESOLUÇÃO");
 
-        jButton1.setText("MÉTODO DE EULER");
+        jb_euler.setText("MÉTODO DE EULER");
+        jb_euler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_eulerActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("EQUAÇÕES DE PROJETO");
+        jb_projeto.setText("EQUAÇÕES DE PROJETO");
+        jb_projeto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_projetoActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("MÉTODO DAS TENSÕES ADMISSÍVEIS");
+        jb_tensao.setText("PROJETO DE COLUNAS PARA CARGAS EXCÊNTRICAS");
+        jb_tensao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_tensaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,20 +75,19 @@ public class MenuMetodoResolucaoForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(101, 101, 101)
-                        .addComponent(jButton2))
+                        .addComponent(jb_projeto))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(119, 119, 119)
-                                .addComponent(jButton1)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jb_tensao)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(jLabel1))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(119, 119, 119)
+                                    .addComponent(jb_euler))))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(jButton3)))
+                        .addComponent(jLabel2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -83,17 +99,36 @@ public class MenuMetodoResolucaoForm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(28, 28, 28)
-                        .addComponent(jButton1)))
+                        .addComponent(jb_euler)))
                 .addGap(5, 5, 5)
-                .addComponent(jButton2)
-                .addGap(26, 26, 26)
-                .addComponent(jButton3)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addComponent(jb_projeto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(jb_tensao)
+                .addGap(23, 23, 23))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jb_eulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_eulerActionPerformed
+        // TODO add your handling code here:
+        MetodoEulerForm metodoEulerForm = new MetodoEulerForm(vci);
+        metodoEulerForm.show();
+    }//GEN-LAST:event_jb_eulerActionPerformed
+
+    private void jb_projetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_projetoActionPerformed
+        // TODO add your handling code here:
+        EquacoesProjetoForm equacoesProjetoForm = new EquacoesProjetoForm(vci);
+        //equacoesProjetoForm.show();
+        equacoesProjetoForm.setVisible(true);
+    }//GEN-LAST:event_jb_projetoActionPerformed
+
+    private void jb_tensaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_tensaoActionPerformed
+        // TODO add your handling code here:
+        MenuCargasExcentricasForm menuCargasExcentricasForm = new MenuCargasExcentricasForm(vci);
+        menuCargasExcentricasForm.setVisible(true);
+    }//GEN-LAST:event_jb_tensaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,10 +167,10 @@ public class MenuMetodoResolucaoForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jb_euler;
+    private javax.swing.JButton jb_projeto;
+    private javax.swing.JButton jb_tensao;
     // End of variables declaration//GEN-END:variables
 }
