@@ -37,6 +37,19 @@ public class EquacoesProjetoInteProxAlu extends javax.swing.JFrame {
     public EquacoesProjetoInteProxAlu(VariavelCl vc) {
         initComponents();
         vci = vc;
+        
+        if(vci.getTipo() == 0){
+            jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/ufersa/valecius/tcc/res/Abas Retas-Excentrico.png")));
+        }else if(vci.getTipo() == 1){
+            jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/ufersa/valecius/tcc/res/Retangular-Excentrico.png")));
+        }else if(vci.getTipo() == 2){
+            jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/ufersa/valecius/tcc/res/Retangular-Vazado-Excentrico.png")));
+        }else if(vci.getTipo() == 3){
+            jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/ufersa/valecius/tcc/res/Circular-Cheio-Excentrico.png")));
+        }else if(vci.getTipo() == 4){
+            jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/ufersa/valecius/tcc/res/Circular-Vazado-Excentrico.png")));
+        }
+        
     }
 
     /**
@@ -83,8 +96,6 @@ public class EquacoesProjetoInteProxAlu extends javax.swing.JFrame {
                 jb_calcActionPerformed(evt);
             }
         });
-
-        jLabel3.setText("IMAGEM");
 
         jLabel6.setText("cm");
 
@@ -147,7 +158,7 @@ public class EquacoesProjetoInteProxAlu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
