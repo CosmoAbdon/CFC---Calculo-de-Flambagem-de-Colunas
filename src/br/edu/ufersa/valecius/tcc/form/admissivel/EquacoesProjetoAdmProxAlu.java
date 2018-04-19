@@ -168,7 +168,8 @@ public class EquacoesProjetoAdmProxAlu extends javax.swing.JFrame {
             
              value = vci.getA()*vci.getIx()*vci.getIy()* vci.getResObj() / (vci.getIx()*vci.getIy() + ey*vci.getCy()*vci.getA()*vci.getIy() + ex*vci.getCx()*vci.getA()*vci.getIx());
              
-             JOptionPane.showMessageDialog(rootPane,  "A carga crítica é : "+value);
+             String str = String.format("%.2f", value);
+             JOptionPane.showMessageDialog(rootPane,  "A carga crítica é : "+ str + " N");
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Erro !");

@@ -30,6 +30,7 @@ public class MetodoEulerForm extends javax.swing.JFrame {
      * Creates new form MetodoEulerForm
      */
     VariavelCl vci;
+
     public MetodoEulerForm(VariavelCl vc) {
         initComponents();
         vci = vc;
@@ -129,27 +130,41 @@ public class MetodoEulerForm extends javax.swing.JFrame {
 
     private void jb_calcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_calcActionPerformed
         // TODO add your handling code here:
-        
+
         Double res;
-        Double E = Double.parseDouble(jtf_moduloEl.getText())  * 1000000000;
+        Double E = Double.parseDouble(jtf_moduloEl.getText()) * 1000000000;
         Double Se = Double.parseDouble(jtf_tensEsco.getText()) * 1000000;
         Double I = 0.0;
-        if(vci.getIx() > vci.getIy())
+        if (vci.getIx() > vci.getIy()) {
             I = vci.getIy();
-        else if(vci.getIx() < vci.getIy())
+            System.out.println("1 caso ! ");
+        } else if (vci.getIx() < vci.getIy()) {
             I = vci.getIx();
-        else if (vci.getIx() == vci.getIy())
+            System.out.println("2 caso ! ");
+        } else if (vci.getIx() == vci.getIy()) {
             I = vci.getIx();
-        res = (Math.pow(Math.PI, 2) * E * I) / Math.pow(vci.getLef(), 2);
-        
-        
-        if(res/vci.getA() <= Se)
-            JOptionPane.showMessageDialog(null, res);
-        else{
-            res = Se * vci.getA();
-            JOptionPane.showMessageDialog(null, res);
+            System.out.println("3 caso ! ");
         }
         
+        if(vci.getTipo() == 4){
+            I = vci.getIx();
+        }
+        
+        System.out.println("Valor : " + I);
+        System.out.println("Valor Ix : " + vci.getIx());
+        System.out.println("Valor IY : " + vci.getIy());
+        res = (Math.pow(Math.PI, 2) * E * I) / Math.pow(vci.getLef(), 2);
+
+        
+        if (res / vci.getA() <= Se) {
+            String str = String.format("%.2f", res);
+            JOptionPane.showMessageDialog(null, str+" N");
+        } else {
+            res = Se * vci.getA();
+            String str = String.format("%.2f", res);
+            JOptionPane.showMessageDialog(null, str+" N");
+        }
+
     }//GEN-LAST:event_jb_calcActionPerformed
 
     /**

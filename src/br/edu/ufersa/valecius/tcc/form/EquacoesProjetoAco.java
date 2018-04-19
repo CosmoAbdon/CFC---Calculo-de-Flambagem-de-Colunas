@@ -160,7 +160,8 @@ public class EquacoesProjetoAco extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Configuração não catalogada e portanto inviável !");
             this.dispose();
         }
-            JOptionPane.showMessageDialog(rootPane,  "A carga crítica é : "+res);
+            String str = String.format("%.2f", res);
+            JOptionPane.showMessageDialog(rootPane,  "A carga crítica é : "+str+" N");
 
     }//GEN-LAST:event_jb_calcActionPerformed
 

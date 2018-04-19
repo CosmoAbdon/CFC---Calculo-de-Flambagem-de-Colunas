@@ -202,7 +202,8 @@ public class EquacoesProjetoInteProxAco extends javax.swing.JFrame {
             
              value = vci.getA()*vci.getIx()*vci.getIy()*vci.getSigmaF()*vci.getResObj()/(vci.getIx()*vci.getIy()*vci.getSigmaF()+ey*vci.getCy()*vci.getA()*vci.getIy()*vci.getResObj()+ex*vci.getCx()*vci.getA()*vci.getIx()*vci.getSigmaF());
              
-             JOptionPane.showMessageDialog(rootPane,  "A carga crítica é : "+value);
+             String str = String.format("%.2f", value);
+             JOptionPane.showMessageDialog(rootPane,  "A carga crítica é : " + value + " N");
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Erro !");

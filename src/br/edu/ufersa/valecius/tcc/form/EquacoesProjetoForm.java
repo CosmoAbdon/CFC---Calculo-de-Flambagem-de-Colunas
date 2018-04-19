@@ -169,7 +169,8 @@ public class EquacoesProjetoForm extends javax.swing.JFrame {
                 System.out.println("3");
             }
             System.out.println("Valor do R : " + r);
-            JOptionPane.showMessageDialog(rootPane, "A carga crítica é : " + res);
+            String str = String.format("%.2f", res);
+            JOptionPane.showMessageDialog(rootPane, "A carga crítica é : " + res + " N");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Valor nulo !");
             System.out.println(e);
@@ -207,13 +208,16 @@ public class EquacoesProjetoForm extends javax.swing.JFrame {
 
             if (0 <= y && y <= 11) {
                 res = 8.25 * Math.pow(10, 6) * vci.getA();
-                JOptionPane.showMessageDialog(rootPane, "A carga crítica é : " + res);
+                String str = String.format("%.2f", res);
+                JOptionPane.showMessageDialog(rootPane, "A carga crítica é : " + str + " N");
             } else if (11 < y && y <= 26) {
                 res = (8.25 * (1 - (1.0 / 2028.0) * (y * y))) * vci.getA();
-                JOptionPane.showMessageDialog(rootPane, "A carga crítica é : " + res);
+                String str = String.format("%.2f", res);
+                JOptionPane.showMessageDialog(rootPane, "A carga crítica é : " + str + " N");
             } else if (y > 26 && y <= 50) {
                 res = (3781 * Math.pow(10, 6) / (y * y)) * vci.getA();
-                JOptionPane.showMessageDialog(rootPane, "A carga crítica é : " + res);
+                String str = String.format("%.2f", res);
+                JOptionPane.showMessageDialog(rootPane, "A carga crítica é : " + str + " N");
             } else if (y > 50) {
                 JOptionPane.showMessageDialog(null, "Configuração não catalogada e portanto inviável !");
             }
